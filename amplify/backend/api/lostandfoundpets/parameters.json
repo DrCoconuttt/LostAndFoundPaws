@@ -1,0 +1,12 @@
+{
+  "AppSyncApiName": "lostandfoundpets",
+  "DynamoDBBillingMode": "PAY_PER_REQUEST",
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthModeLastUpdated": "2024-03-20T05:12:15.631Z",
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authlostandfoundpetsfd158904",
+      "Outputs.UserPoolId"
+    ]
+  }
+}

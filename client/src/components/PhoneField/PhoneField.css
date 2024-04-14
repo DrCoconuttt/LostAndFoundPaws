@@ -1,0 +1,7 @@
+.phone-field-container input {
+    margin-left: 12px;
+}
+
+.react-tel-input :disabled {
+    cursor: auto;
+}

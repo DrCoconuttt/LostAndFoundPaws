@@ -1,0 +1,116 @@
+/*
+------------------------------------------------------------------------------------------------------------
+-------------------------------------------------- Logo ----------------------------------------------------
+------------------------------------------------------------------------------------------------------------
+*/
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: #3DA9FC;
+  font-family: "Inter";
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.logo img {
+  margin-right: 10px;
+  height: 40px;
+}
+
+/*
+------------------------------------------------------------------------------------------------------------
+-------------------------------------------------- Account Management---------------------------------------
+------------------------------------------------------------------------------------------------------------
+*/
+
+.account-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.account-container {
+  position: relative;
+  background: #fff;
+  padding: 36px;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+.account-wrapper-mobile {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.account-container-mobile {
+  position: relative;
+  padding-top: 100px;
+  width: 90%;
+  max-width: 400px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.account-header {
+  text-align: center;
+}
+
+.divider {
+  width: 100%;
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 24px;
+}
+
+.account-form-component {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+/*new class to make the optional text not affect the spacing (this is so bad)*/
+.account-form-component-with-optional-text {
+  display: flex;
+  flex-direction: column;
+  margin-top: 0px;
+}
+
+.account-optional-text {
+  display: block;
+  text-align: left;
+  text-decoration: none;
+  font-size: 16px;
+  margin-bottom: 4px;
+  color: grey;
+  font-style: italic;
+}
+
+.forgot-password-link {
+  display: block;
+  text-align: left;
+  color: #0066ee;
+  text-decoration: none;
+}
+
+.account-link-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 16px;
+}
+
+.account-link {
+  color: #0066ee;
+  text-decoration: none;
+}

@@ -1,0 +1,17 @@
+.my-account-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 36px;
+}
+
+.my-account-container {
+  position: relative;
+  width: 90%;
+  max-width: 400px;
+}
+
+/* For some reason this fixes an issue where when hovering the edit buttton it is overlapped by profile picture?????????*/
+.profile-picture-edit-button-button-container:hover {
+  background-color: #f5f5f5;
+}

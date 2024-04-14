@@ -1,0 +1,15 @@
+.post-comment {
+  border-radius: 1rem;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+.post-comment-content {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}

@@ -1,0 +1,53 @@
+.pet-image {
+  border-radius: 10px;
+}
+
+.carousel-container {
+  position: relative;
+  width: 95%;
+  max-height: 300px;
+  margin: auto;
+}
+
+.left-arrow-container {
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+.right-arrow-container {
+  position: absolute;
+  top: 50%;
+  right: 5px;
+  transform: translateY(-50%);
+  z-index: 999;
+}
+
+.arrow {
+  background-color: #ffffff;
+}
+
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #d9d9d9;
+  border-radius: 50%;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+.dot.active {
+  background-color: #3da9fc;
+}
+
+.span-key {
+    font-weight: bold;
+}

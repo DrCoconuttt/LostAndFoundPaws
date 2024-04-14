@@ -1,0 +1,35 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-lostandfoundpets-dev-4415e-authRole",
+      "UnauthRoleArn": "arn:aws:iam::949631297289:role/amplify-lostandfoundpets-dev-4415e-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::949631297289:role/amplify-lostandfoundpets-dev-4415e-authRole",
+      "Region": "ca-central-1",
+      "DeploymentBucketName": "amplify-lostandfoundpets-dev-4415e-deployment",
+      "UnauthRoleName": "amplify-lostandfoundpets-dev-4415e-unauthRole",
+      "StackName": "amplify-lostandfoundpets-dev-4415e",
+      "StackId": "arn:aws:cloudformation:ca-central-1:949631297289:stack/amplify-lostandfoundpets-dev-4415e/d72c5fe0-f891-11ee-b147-0ed0821b5c9d",
+      "AmplifyAppId": "dqxjrlvdovoe2",
+      "AuthTriggerTemplateURL": "https://s3.amazonaws.com/amplify-lostandfoundpets-dev-4415e-deployment/amplify-cfn-templates/auth/auth-trigger-cloudformation-template.json"
+    },
+    "categories": {
+      "auth": {
+        "lostandfoundpetsfd158904": {},
+        "userPoolGroups": {}
+      },
+      "function": {
+        "lostandfoundpetsfd158904PostConfirmation": {
+          "GROUP": "Admin",
+          "deploymentBucketName": "amplify-lostandfoundpets-dev-4415e-deployment",
+          "s3Key": "amplify-builds/lostandfoundpetsfd158904PostConfirmation-3942736944487839336d-build.zip"
+        }
+      },
+      "api": {
+        "lostandfoundpets": {}
+      },
+      "storage": {
+        "s34719207c": {}
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+.list-view {
+  margin: 0px 1rem 0px 1rem;
+  padding-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+  .list-view {
+    margin: 0px 1rem 0px 1rem;
+    padding-top: 0rem;
+  }
+}

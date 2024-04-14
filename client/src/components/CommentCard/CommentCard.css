@@ -1,0 +1,19 @@
+.comment-topbar {
+  display: flex;
+  justify-content: space-between;
+  width: calc(100% - 24px);
+}
+
+.comment-content {
+  display: flex;
+  align-self: flex-start;
+  width: calc(100% - 24px);
+  text-align: left;
+  flex-direction: column;
+}
+
+.comment-actions {
+  display: flex;
+  align-self: flex-start;
+  padding-top: 5px;
+}

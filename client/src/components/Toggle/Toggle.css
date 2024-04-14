@@ -1,0 +1,33 @@
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 30px;
+  background-color: #E6E7EC;
+  border-radius: 30px;
+}
+
+.toggle-label {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 100%;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  z-index: 2;
+  color: #000;
+  min-width: fit-content;
+}
+
+.toggle-handle {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: #C0E7FD;
+  border-radius: 30px;
+  transition: left 0.3s ease, width 0.3s ease;
+  z-index: 1;
+  min-width: fit-content;
+}

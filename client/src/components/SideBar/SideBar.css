@@ -1,0 +1,33 @@
+.sidebar {
+  height: 80vh;
+  width: 365px;
+  background-color: white;
+  padding: 20px;
+  z-index: 1001;
+  position: fixed;
+  right: 0px;
+  border-radius: 10px;
+  border-left: 10px solid #c0e7fd;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    height: calc(100vh - 250px);
+    border-radius: 0px;
+    border-left: 0px;
+    width: 70%;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.divider {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ccc;
+}
+
+.no-scroll {
+  overflow: hidden;
+}

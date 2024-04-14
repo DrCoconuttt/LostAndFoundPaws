@@ -1,0 +1,222 @@
+type User
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read, create] }
+      { allow: owner, operations: [create, update, read, delete] }
+      { allow: groups, operations: [create, update, read, delete], groups: ["Admin"] }
+      { allow: groups, operations: [update, read, delete], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  username: String!
+  role: Role!
+  profilePicture: String
+  email: String
+  phone: String
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+  posts: [Post] @hasMany(indexName: "byUser", fields: ["id"])
+  postReports: [PostReport] @hasMany(indexName: "byUser", fields: ["id"])
+  sightings: [Sighting] @hasMany(indexName: "byUser", fields: ["id"])
+  sightingReports: [SightingReport] @hasMany(indexName: "byUser", fields: ["id"])
+  comments: [Comment] @hasMany(indexName: "byUser", fields: ["id"])
+  commentReports: [CommentReport] @hasMany(indexName: "byUser", fields: ["id"])
+}
+
+type Post
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner, operations: [create, update, read, delete] }
+      { allow: groups, operations: [create, update, read, delete], groups: ["Admin"] }
+      { allow: groups, operations: [create, read], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  name: String!
+  status: PetStatus!
+  gender: PetGender!
+  summary: String!
+  description: String!
+  resolved: String @default(value: "false")
+  lastKnownLocation: Location
+  species: PetSpecies!
+  images: [String]
+  contactInfo: ContactInfo
+  user: User @belongsTo(fields: ["userID"])
+  userID: ID! @index(name: "byUser", queryField: "postsByUser")
+  comments: [Comment] @hasMany(indexName: "byPost", fields: ["id"])
+  postReports: [PostReport] @hasMany(indexName: "byPost", fields: ["id"])
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Comment
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read] }
+      { allow: owner, operations: [create, update, read, delete] }
+      { allow: groups, operations: [create, update, read, delete], groups: ["Admin"] }
+      { allow: groups, operations: [create, read], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  content: String!
+  postID: ID! @index(name: "byPost", queryField: "commentsByPost")
+  parentCommentID: ID @index(name: "byParentComment", queryField: "repliesByParentComment")
+  parentComment: Comment @belongsTo(fields: ["parentCommentID"])
+  replies: [Comment] @hasMany(indexName: "byParentComment", fields: ["parentCommentID"])
+  user: User @belongsTo(fields: ["userID"])
+  userID: ID! @index(name: "byUser", queryField: "commentsByUser")
+  commentReports: [CommentReport]
+    @hasMany(indexName: "byComment", fields: ["id"])
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type Sighting
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [read, create] }
+      { allow: owner, operations: [create, update, read, delete] }
+      { allow: groups, operations: [create, update, read, delete], groups: ["Admin"] }
+      { allow: groups, operations: [create, read], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  image: String!
+  location: Location!
+  resolved: String @default(value: "false")
+  reporterType: ReporterType! # distinguish between sightings by posters and guests
+  user: User @belongsTo(fields: ["userID"]) # Optional if reported by a registered user
+  userID: ID @index(name: "byUser", queryField: "sightingsByUser") # This needs to be provided is user is authenitcated
+  contactInfo: ContactInfo
+  sightingReports: [SightingReport] @hasMany(indexName: "bySighting", fields: ["id"])
+  @auth(
+    rules: [
+      { allow: owner },
+      { allow: groups, groups: ["Poster", "Admin"] }
+    ]
+  )
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type PostReport
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [create] }
+      { allow: owner, operations: [create, read] }
+      { allow: groups, operations: [create, read, update, delete], groups: ["Admin"] }
+      { allow: groups, operations: [create], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  reason: ReportReason!
+  description: String
+  user: User @belongsTo(fields: ["userID"])
+  userID: ID @index(name: "byUser", queryField: "postReportsByUser")
+  post: Post @belongsTo(fields: ["postID"])
+  postID: ID! @index(name: "byPost", queryField: "reportsByPost")
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type CommentReport
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [create] }
+      { allow: owner, operations: [create, read] }
+      { allow: groups, operations: [create, read, update, delete], groups: ["Admin"] }
+      { allow: groups, operations: [create], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  reason: ReportReason!
+  description: String
+  user: User @belongsTo(fields: ["userID"])
+  userID: ID @index(name: "byUser", queryField: "commentReportsByUser")
+  comment: Comment @belongsTo(fields: ["commentID"])
+  commentID: ID! @index(name: "byComment", queryField: "reportsByComment")
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+type SightingReport
+  @model
+  @auth(
+    rules: [
+      { allow: public, operations: [create] }
+      { allow: owner, operations: [create, read] }
+      { allow: groups, operations: [create, read, update, delete], groups: ["Admin"] }
+      { allow: groups, operations: [create], groups: ["Poster"] }
+    ]
+  ) 
+  {
+  id: ID! @primaryKey
+  reason: ReportReason!
+  description: String
+  user: User @belongsTo(fields: ["userID"])
+  userID: ID @index(name: "byUser", queryField: "sightingReportsByUser")
+  sighting: Sighting @belongsTo(fields: ["sightingID"])
+  sightingID: ID! @index(name: "bySighting", queryField: "reportsBySighting")
+  createdAt: AWSDateTime!
+  updatedAt: AWSDateTime!
+}
+
+
+type Location {
+  latitude: Float!
+  longitude: Float!
+  address: String
+}
+
+type ContactInfo {
+  email: String!
+  phone: String
+}
+
+enum ReportReason {
+  INAPPROPRIATE
+  SPAM
+  OTHER
+}
+
+enum Role {
+  POSTER
+  ADMIN
+}
+
+enum ReporterType {
+  POSTER
+  GUEST
+}
+
+enum PetStatus {
+  LOST
+  FOUND
+}
+
+enum PetSpecies {
+  DOG
+  CAT
+  OTHER
+}
+
+enum PetGender {
+  MALE
+  FEMALE
+  UNKNOWN
+}

@@ -1,0 +1,21 @@
+.navbarBottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position:sticky;
+  background-color: #FFFFFF;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.3);
+  padding-bottom: 20px;
+  padding-top: 10px;
+  height: 100px;
+}
+
+.navbarBottom .MuiButton-root {
+  margin: 8px;
+  width: 85%;
+}

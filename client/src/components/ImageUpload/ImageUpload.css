@@ -1,0 +1,52 @@
+.images-container {
+  position: relative;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 8px;
+  padding: 8px 4px;
+  max-height: 300px;
+  flex-wrap: nowrap;
+}
+
+.images-wrapper {
+  flex-grow: 1;
+  display: flex;
+  overflow-x: auto;
+}
+
+.image-container {
+  position: relative;
+  margin-right: 8px;
+  margin-bottom: 8px;
+}
+
+.image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.delete-button {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+}
+
+.input-hidden {
+  display: none;
+}
+
+.choose-files-button {
+  width: fit-content;
+  padding: 4px 8px;
+  border-radius: 8px;
+  background-color: #3da9fc;
+  color: white;
+  cursor: pointer;
+  border: none;
+}
