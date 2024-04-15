@@ -2,4 +2,4 @@
 
 ## Deployed Site
 
-https://dev4518.dqxjrlvdovoe2.amplifyapp.com/
+https://main.d3snkflaj8c6y9.amplifyapp.com/
