@@ -118,7 +118,7 @@ const CreateSightingForm = ({ isEdit, sightingData, handleSubmit, isSubmitting }
                       />
                     </Grid>
                     <Grid item xs={12}>
-                      <FieldTitle title="Phone Number (Optional)" />
+                      <FieldTitle title="Phone Number" />
                       <PhoneField
                         value={values.phoneNumber}
                         onChange={(value) => {
