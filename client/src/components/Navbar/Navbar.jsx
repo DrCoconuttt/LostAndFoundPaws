@@ -59,7 +59,7 @@ const Navbar = () => {
             <div>
               {userState === "Admin" ? (
                 <div className="userActionSection">
-                  <Button variant="contained" onClick={() => navigate("/viewReportings")}>View Reportings</Button>
+                  <Button variant="contained" onClick={() => navigate("/viewReportings")}>View Reports</Button>
                 </div>
               ) : (
                 <div className="userActionSection">

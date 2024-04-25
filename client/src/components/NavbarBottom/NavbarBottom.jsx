@@ -18,7 +18,7 @@ const NavbarBottom = () => {
     <div>
       {userState === "Admin" ? (
         <div className="navbarBottom">
-          <Button variant="contained" onClick={() => navigate("/viewReportings")}>View Reportings</Button> 
+          <Button variant="contained" onClick={() => navigate("/viewReportings")}>View Reports</Button> 
         </div>
       ) : userState === "Guest" ? (
         <div className="navbarBottom">
