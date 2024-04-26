@@ -270,6 +270,122 @@ const ViewPostPage = () => {
   return (
     <Container maxWidth="xl" style={{ marginTop: "20px" }}>
       <Grid container>
+        <Grid item container alignItems="center" xs={10} md={6} lg={6}>
+          <ArrowBackButton onClick={() => navigate(-1)} />
+          <Typography
+            variant="h1"
+            sx={{ fontWeight: "bold", marginLeft: "20px" }}
+          >
+            {petData.name}
+          </Typography>
+        </Grid>
+        <Grid item xs={2} md={6} lg={6} container justifyContent="flex-end">
+          {!isAdminOrOwner ? (
+            <div>
+              <Button
+                size={small ? "small" : "medium"}
+                variant="contained"
+                sx={{
+                  backgroundColor: theme.palette.custom.greyBkg.tag,
+                  borderRadius: 2,
+                  color: "#000",
+                  marginRight: "8px",
+                }}
+                startIcon={<FlagIcon />}
+                onClick={() => setIsReportModalOpen(true)}
+              >
+                Report
+              </Button>
+            </div>
+          ) : (
+            <div>
+              {medium ? (
+                <div>
+                  <div
+                    className="userMenuSection"
+                    onClick={handleMenu}
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <MoreHorizIcon sx={{ fontSize: "40px" }} />
+                  </div>
+                  <ActionsMenu
+                    anchorEl={anchorEl}
+                    open={open}
+                    handleClose={handleClose}
+                    handleEdit={() => navigate(`/posts/${petData.id}/edit`)}
+                    handleDelete={() => setOpenConfirmDelete(true)}
+                    handleResolved={() => setOpenConfirmResolve(true)}
+                    resolved={petData.resolved == "true"}
+                  />
+                </div>
+              ) : (
+                <div style={{ marginLeft: "-20px", marginRight: "-10px" }}>
+                  <Button
+                    size={medium ? "small" : "medium"}
+                    variant="contained"
+                    sx={{
+                      backgroundColor: theme.palette.custom.greyBkg.tag,
+                      borderRadius: 2,
+                      color: "#000",
+                      marginRight: "8px",
+                    }}
+                    startIcon={<EditIcon />}
+                    onClick={() => navigate(`/posts/${petData.id}/edit`)}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    size={medium ? "small" : "medium"}
+                    variant="contained"
+                    onClick={() => setOpenConfirmResolve(true)}
+                    sx={{
+                      backgroundColor: theme.palette.custom.greyBkg.tag,
+                      borderRadius: 2,
+                      color: "#000",
+                      marginRight: "8px",
+                    }}
+                    startIcon={<CheckIcon />}
+                    disabled={petData.resolved == "true"}
+                  >
+                    Mark as resolved
+                  </Button>
+                  <Button
+                    size={medium ? "small" : "medium"}
+                    variant="contained"
+                    color="error"
+                    onClick={() => setOpenConfirmDelete(true)}
+                    sx={{
+                      borderRadius: 2,
+                      marginRight: "8px",
+                    }}
+                    startIcon={<DeleteIcon />}
+                  >
+                    Delete
+                  </Button>
+                </div>
+              )}
+            </div>
+          )}
+        </Grid>
+
+        <Grid item xs={12}>
+          <Stack
+            direction="row"
+            sx={{
+              overflow: "auto",
+              gap: 1,
+              display: "flex",
+              flexWrap: "wrap",
+            }}
+          >
+            <StatusLabel status={petData.status} />
+            <StatusLabel status={petData.species} />
+          </Stack>
+        </Grid>
         <Grid
           container
           item
@@ -282,122 +398,6 @@ const ViewPostPage = () => {
               : { marginBottom: 20 }
           }
         >
-          <Grid item container alignItems="center" xs={10} md={3} lg={3}>
-            <ArrowBackButton onClick={() => navigate(-1)} />
-            <Typography
-              variant="h1"
-              sx={{ fontWeight: "bold", marginLeft: "20px" }}
-            >
-              {petData.name}
-            </Typography>
-          </Grid>
-          <Grid item xs={2} md={9} lg={9} container justifyContent="flex-end">
-            {!isAdminOrOwner ? (
-              <div>
-                <Button
-                  size={small ? "small" : "medium"}
-                  variant="contained"
-                  sx={{
-                    backgroundColor: theme.palette.custom.greyBkg.tag,
-                    borderRadius: 2,
-                    color: "#000",
-                    marginRight: "8px",
-                  }}
-                  startIcon={<FlagIcon />}
-                  onClick={() => setIsReportModalOpen(true)}
-                >
-                  Report
-                </Button>
-              </div>
-            ) : (
-              <div>
-                {medium ? (
-                  <div>
-                    <div
-                      className="userMenuSection"
-                      onClick={handleMenu}
-                      style={{
-                        display: "flex",
-                        alignItems: "center",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <MoreHorizIcon sx={{ fontSize: "40px" }} />
-                    </div>
-                    <ActionsMenu
-                      anchorEl={anchorEl}
-                      open={open}
-                      handleClose={handleClose}
-                      handleEdit={() => navigate(`/posts/${petData.id}/edit`)}
-                      handleDelete={() => setOpenConfirmDelete(true)}
-                      handleResolved={() => setOpenConfirmResolve(true)}
-                      resolved={petData.resolved == "true"}
-                    />
-                  </div>
-                ) : (
-                  <div style={{ marginLeft: "-20px", marginRight: "-10px" }}>
-                    <Button
-                      size={medium ? "small" : "medium"}
-                      variant="contained"
-                      sx={{
-                        backgroundColor: theme.palette.custom.greyBkg.tag,
-                        borderRadius: 2,
-                        color: "#000",
-                        marginRight: "8px",
-                      }}
-                      startIcon={<EditIcon />}
-                      onClick={() => navigate(`/posts/${petData.id}/edit`)}
-                    >
-                      Edit
-                    </Button>
-                    <Button
-                      size={medium ? "small" : "medium"}
-                      variant="contained"
-                      onClick={() => setOpenConfirmResolve(true)}
-                      sx={{
-                        backgroundColor: theme.palette.custom.greyBkg.tag,
-                        borderRadius: 2,
-                        color: "#000",
-                        marginRight: "8px",
-                      }}
-                      startIcon={<CheckIcon />}
-                      disabled={petData.resolved == "true"}
-                    >
-                      Mark as resolved
-                    </Button>
-                    <Button
-                      size={medium ? "small" : "medium"}
-                      variant="contained"
-                      color="error"
-                      onClick={() => setOpenConfirmDelete(true)}
-                      sx={{
-                        borderRadius: 2,
-                        marginRight: "8px",
-                      }}
-                      startIcon={<DeleteIcon />}
-                    >
-                      Delete
-                    </Button>
-                  </div>
-                )}
-              </div>
-            )}
-          </Grid>
-
-          <Grid item xs={12}>
-            <Stack
-              direction="row"
-              sx={{
-                overflow: "auto",
-                gap: 1,
-                display: "flex",
-                flexWrap: "wrap",
-              }}
-            >
-              <StatusLabel status={petData.status} />
-              <StatusLabel status={petData.species} />
-            </Stack>
-          </Grid>
           <Grid item xs={12}>
             <Typography variant="subtitle2" color="#979797">
               {`Posted: ${petData.createdAt.split("T")[0]} - Updated: ${
