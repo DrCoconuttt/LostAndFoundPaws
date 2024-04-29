@@ -1,6 +1,6 @@
 ![image](https://github.com/DrCoconuttt/LostAndFoundPaws/assets/56743529/ddd25b65-ef00-4883-b547-d3008a1d4c3f)
 
-Annually, countless pets go missing, posing risks to the animals and causing significant distress for their owners. LostAndFoundPaws addresses this issue by creating a user-friendly platform that enables swift and effective searches, facilitating the sharing of information for lost or found pets, streamlining the process of reuniting pets with their owners.
+Annually, countless pets go missing, posing risks to the animals and causing distress to their owners. LostAndFoundPaws addresses this issue with user-friendly platform that enables swift and effective searches, facilitates the sharing of information for lost or found pets, and streamlines the process of reuniting pets with their owners.
 
 ## Deployed Site
 
